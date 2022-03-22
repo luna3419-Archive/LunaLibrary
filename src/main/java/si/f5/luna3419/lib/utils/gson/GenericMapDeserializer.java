@@ -11,7 +11,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 
 /**
- * GenericMapDeserializer<T> : Map<String, T> へのデシリアライザ
+ * GenericMapDeserializer<T> : Map<String, T> deserializer
  */
 public final class GenericMapDeserializer<T> implements JsonDeserializer<HashMap<String, T>> {
    @Override
