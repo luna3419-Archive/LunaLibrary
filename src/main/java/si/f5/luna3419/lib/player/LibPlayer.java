@@ -58,4 +58,8 @@ public class LibPlayer {
 
         registerPlayers(Bukkit.getOnlinePlayers());
     }
+
+    public static void saveAll() {
+        playerMap.values().stream().map(LibPlayer::getData).forEach(Library.getInstance().getDatabase()::setPlayerData);
+    }
 }

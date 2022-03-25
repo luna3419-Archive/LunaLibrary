@@ -15,6 +15,7 @@ import si.f5.luna3419.lib.database.Database;
 import si.f5.luna3419.lib.database.IPlayerDatabase;
 import si.f5.luna3419.lib.listeners.LogInOutListener;
 import si.f5.luna3419.lib.packet.PacketAPI;
+import si.f5.luna3419.lib.player.LibPlayer;
 
 /**
  * LunaLibrary 1.0.0
@@ -46,6 +47,11 @@ public class Library extends JavaPlugin {
         loadedConfig = Config.loadConfig();
 
         this.database = new Database(connection, playerDatabase);
+    }
+
+    @Override
+    public void onDisable() {
+        LibPlayer.saveAll();
     }
 
     private void registerListeners(Listener... listeners) {
