@@ -1,8 +1,6 @@
 on:
   push:
     branches: [ develop ]
-    paths:
-      - 'src/*'
   
   workflow_dispatch:
 
@@ -22,6 +20,13 @@ jobs:
       uses: jossef/action-latest-release-info@v1.1.0
       env:
         GITHUB_TOKEN: ${{ github.token }}
+    
+    - name: Delete old release assets
+      uses: mknejp/delete-release-assets@v1
+      with:
+        token: ${{ github.token }}
+        tag: '1.0'
+        assets: '*.zip'
         
     - name: Upload Release Asset
       id: upload-release-asset
