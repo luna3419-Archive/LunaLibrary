@@ -12,6 +12,11 @@ jobs:
     - uses: actions/setup-java@v1
       with:
         java-version: 17
+    - name: Cache Maven local repository
+      uses: actions/cache@v2
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
@@ -26,7 +31,8 @@ jobs:
       with:
         token: ${{ github.token }}
         tag: '1.0'
-        assets: '*.zip'
+        fail-if-no-assets: false
+        assets: '*.jar'
         
     - name: Upload Release Asset
       id: upload-release-asset
